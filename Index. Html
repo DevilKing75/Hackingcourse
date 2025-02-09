@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking Course - ₹9 Only</title>
+    <meta name="description" content="Learn Ethical Hacking with 250+ premium tools. Only ₹9! Instant download + 15-day online classes.">
+    <meta name="keywords" content="ethical hacking, hacking tools, cyber security course, penetration testing, learn hacking, hacking tutorial">
+    <meta name="author" content="Androk">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background-color: black;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+        .glitch {
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px red, -2px -2px blue;
+            animation: glitch 1s infinite alternate;
+        }
+        @keyframes glitch {
+            0% { transform: translate(2px, 2px); }
+            100% { transform: translate(-2px, -2px); }
+        }
+        .container {
+            padding: 20px;
+        }
+        .slider {
+            width: 80%;
+            max-width: 500px;
+            overflow: hidden;
+            border: 2px solid #0f0;
+            box-shadow: 0 0 10px #0f0;
+            margin: auto;
+        }
+        .slides img {
+            width: 100%;
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .buy-btn {
+            background: #0f0;
+            color: black;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        .buy-btn:hover {
+            background: #0c0;
+            transform: scale(1.1);
+        }
+        .details {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 5px;
+            text-align: left;
+            max-width: 500px;
+            margin: auto;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body onload="playVoiceGreeting()">
+    <h1 class="glitch">ETHICAL HACKING COURSE - ₹9 ONLY</h1>
+    
+    <div class="container">
+        <!-- Image Slider -->
+        <div class="slider">
+            <div class="slides">
+                <img src="image1.jpg" class="active">
+                <img src="image2.jpg">
+                <img src="image3.jpg">
+            </div>
+        </div>
+
+        <p>📂 <b>250+ Premium Hacking Tools</b> (Wi-Fi, Instagram, YouTube, and more)</p>
+        <p>🎓 <b>15-Day Online Classes</b> by Anurag Sir</p>
+        <p>📥 <b>Instant Download after Payment</b></p>
+        <p>💰 <b>Price: ₹9</b></p>
+
+        <button class="buy-btn" onclick="makePayment()">💳 Buy Now</button>
+        
+        <!-- Know More About the Code -->
+        <button class="buy-btn" onclick="toggleDetails()">🔍 Know More About the Code</button>
+        <div class="details" id="details">
+            <p>💾 After purchasing, you'll get a <b>downloadable file</b> with all tools.</p>
+            <p>📲 You’ll also get access to a <b>WhatsApp group</b> for live training.</p>
+            <p>🎯 <b>Learn how to use hacking tools ethically & protect yourself online.</b></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Androk | Ethical Hacking Course</p>
+    </div>
+
+    <script>
+        // Image Slider Logic
+        let slides = document.querySelectorAll('.slides img');
+        let index = 0;
+
+        function changeSlide() {
+            slides[index].classList.remove('active');
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+        }
+        setInterval(changeSlide, 2000);
+
+        // Toggle Course Details
+        function toggleDetails() {
+            let details = document.getElementById('details');
+            if (details.style.display === "none") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+
+        // JSON structure for course details
+        const courseData = {
+            "price": "₹9",
+            "fileDownload": "https://yourlink.com/file.zip",
+            "whatsappGroup": "https://chat.whatsapp.com/yourgroup"
+        };
+
+        function makePayment() {
+            alert("Redirecting to Razorpay Payment...");
+            var options = {
+                "key": "rzp_test_yourapikey", // Replace with your Razorpay API Key
+                "amount": 900, // ₹9 in paise
+                "currency": "INR",
+                "name": "Ethical Hacking Course",
+                "description": "250+ Premium Hacking Tools + 15-Day Training",
+                "image": "https://yourlink.com/logo.png",
+                "handler": function (response) {
+                    alert("Payment Successful! Your course file is ready for download.");
+                    window.location.href = courseData.fileDownload;
+                    setTimeout(() => {
+                        window.location.href = courseData.whatsappGroup;
+                    }, 3000);
+                },
+                "prefill": {
+                    "name": "",
+                    "email": "",
+                    "contact": ""
+                },
+                "theme": {
+                    "color": "#0f0"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+
+        // Voice Greeting Function
+        function playVoiceGreeting() {
+            let msg = new SpeechSynthesisUtterance();
+            msg.text = "Welcome to this online ethical hacking course. Here you will find 250 plus premium tools in your file after successfully buying, and a WhatsApp channel will appear for the online class by Anurag Sir for 15 days.";
+            msg.lang = "en-IN";
+            msg.rate = 1;
+            msg.pitch = 1.2;
+            window.speechSynthesis.speak(msg);
+        }
+    </script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>
